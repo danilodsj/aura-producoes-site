@@ -75,7 +75,7 @@ def static_main(h1, paras, current):
     home = '' if current is None else '<p><a href="/" style="color:#12b5f0">← Aura Produções e Eventos</a></p>'
     return (f'<main id="__bundler_placeholder" style="max-width:720px;padding:24px;font-family:sans-serif;color:#f3efe6">'
             f'{home}<h1>{esc(h1)}</h1>{ps}{nav_links(current)}'
-            '<p><a href="https://wa.me/5521969076484" style="color:#12b5f0">WhatsApp (21) 96907-6484</a></p></main>')
+            '<p><a href="/blog" style="color:#12b5f0">Blog: ideias para festas e eventos</a></p><p><a href="https://wa.me/5521969076484" style="color:#12b5f0">WhatsApp (21) 96907-6484</a></p></main>')
 
 def build(src, title, desc, url, image, ld, page_id, main_html):
     s = src
