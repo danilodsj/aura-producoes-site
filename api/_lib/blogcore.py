@@ -97,12 +97,15 @@ body{margin:0;background:var(--night);color:var(--cream);font-family:'Sora',sans
 a{color:var(--cyan)}a:hover{color:#4cc9f5}
 .wrap{padding-left:5%;padding-right:5%}
 header.site{border-bottom:1px solid var(--line)}
-header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
-.logo{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--cream);font-family:'Michroma',sans-serif;font-size:36px;line-height:1}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding-top:16px;padding-bottom:16px}
+.logo{flex:none;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--cream);font-family:'Michroma',sans-serif;font-size:36px;line-height:1}
 .logo img{display:block}
-nav.main{display:flex;flex-wrap:wrap;gap:4px}
-nav.main a{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:10px}
+nav.main{flex:1 1 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0 4px}
+nav.main a{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:10px 8px;line-height:1.2;white-space:nowrap}
 nav.main a:hover,nav.main a[aria-current]{color:var(--cream)}
+header.site .cta{flex:none;white-space:nowrap;padding:14px 22px;font-size:12px}
+@media (max-width:1180px){nav.main{order:3;flex-basis:100%;justify-content:flex-start;margin:0 -8px}}
+@media (max-width:520px){header.site .wrap{column-gap:10px}.logo{font-size:26px;gap:4px}.logo img{width:24px;height:22px}header.site .cta{padding:12px 14px;font-size:10px;letter-spacing:.1em}}
 .cta{display:inline-block;background:var(--pink);color:var(--cream);text-decoration:none;font-family:'Michroma',sans-serif;font-size:13px;letter-spacing:.15em;text-transform:uppercase;padding:16px 28px}
 .cta:hover{background:#ec4fa3;color:var(--cream)}
 .eyebrow{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
