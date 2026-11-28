@@ -101,7 +101,7 @@ header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content
 .logo{flex:none;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--cream);font-family:'Michroma',sans-serif;font-size:36px;line-height:1}
 .logo img{display:block}
 nav.main{flex:1 1 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0 4px}
-nav.main a{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:10px 8px;line-height:1.2;white-space:nowrap}
+nav.main a{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0 8px;line-height:1.2;white-space:nowrap;height:44px;display:inline-flex;align-items:center}
 nav.main a:hover,nav.main a[aria-current]{color:var(--cream)}
 header.site .cta{flex:none;white-space:nowrap;padding:14px 22px;font-size:12px}
 @media (max-width:1180px){nav.main{order:3;flex-basis:100%;justify-content:flex-start;margin:0 -8px}}
