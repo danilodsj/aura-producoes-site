@@ -30,9 +30,9 @@ class handler(BaseHTTPRequestHandler):
         q = parse_qs(urlparse(self.path).query)
         kind = (q.get('kind') or ['index'])[0]
         slug = (q.get('slug') or [''])[0]
-        posts = core.published()
         status, ctype = 200, 'text/html; charset=utf-8'
         try:
+            posts = core.published()
             if kind == 'sitemap':
                 body, ctype = core.build_sitemap(posts), 'application/xml; charset=utf-8'
             elif kind == 'feed':

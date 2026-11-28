@@ -33,8 +33,11 @@ def parse_post(path):
         if not meta.get(k): raise SystemExit(f'{path.name}: falta "{k}" no cabeçalho')
     if not re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', meta['slug']): raise SystemExit(f'{path.name}: slug inválido')
     if meta.get('service') and meta['service'] not in SERVICES: raise SystemExit(f'{path.name}: service "{meta["service"]}" não existe')
-    meta['date'] = datetime.date.fromisoformat(meta['date'])
-    meta['updated'] = datetime.date.fromisoformat(meta['updated']) if meta.get('updated') else meta['date']
+    try:
+        meta['date'] = datetime.date.fromisoformat(meta['date'])
+        meta['updated'] = datetime.date.fromisoformat(meta['updated']) if meta.get('updated') else meta['date']
+    except ValueError:
+        raise SystemExit(f'{path.name}: data inválida (use AAAA-MM-DD)')
     meta['tags'] = [t.strip() for t in meta.get('tags', '').split(',') if t.strip()]
     meta['draft'] = meta.get('draft', 'false').lower() == 'true'
     meta['body'] = m.group(2).strip()
