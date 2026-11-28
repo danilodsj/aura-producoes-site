@@ -12,38 +12,7 @@ HOME_TITLE = 'Aura Produções e Eventos | Mobília, Plataforma 360 e Experiênc
 HOME_DESC = ('Aura Produções e Eventos no Rio de Janeiro: mobília para eventos, plataforma 360°, tequileiro, '
              'story maker, podcast do evento e chopeira móvel para casamentos, 15 anos, aniversários e eventos corporativos.')
 
-PAGES = [
-  dict(id='moveis', slug='mobilia-para-eventos', name='Mobília para eventos', img='mobilia',
-       title='Mobília para Eventos no RJ | Cadeiras, Mesas e Lounges | Aura',
-       desc='Aluguel de mobília para eventos no Rio de Janeiro: cadeiras Tiffany, Dior e Eiffel, mesas, bistrôs e lounges. Entrega, montagem e retirada inclusas.',
-       h1='Mobília para eventos no Rio de Janeiro',
-       body='Cadeiras, mesas, lounges e bistrôs para casamentos, aniversários, 15 anos e eventos corporativos. Trabalhamos com modelos Tiffany, Tiffany Cristal, Dior, Eiffel e Jacobsen, do clássico ao moderno. Entrega, montagem e retirada por nossa conta, e você pode juntar a mobília com as outras experiências da Aura no mesmo pacote.'),
-  dict(id='p360', slug='plataforma-360', name='Plataforma 360', img='plataforma-360',
-       title='Plataforma 360 para Festas e Casamentos no RJ | Aura',
-       desc='Aluguel de plataforma 360° para casamentos, 15 anos e eventos no Rio de Janeiro. Vídeo em câmera lenta enviado na hora para o celular do convidado.',
-       h1='Plataforma 360 para festas no Rio de Janeiro',
-       body='Seus convidados sobem na plataforma e saem com um vídeo 360° em câmera lenta, com iluminação de palco e ring light, pronto para postar nos stories. O vídeo é enviado na hora para o celular do convidado e pode levar moldura e trilha com a identidade do seu evento.'),
-  dict(id='teq', slug='pequeno-tequileiro', name='Pequeno Tequileiro', img='tequileiro',
-       title='Tequileiro para Festas e Casamentos no RJ | Pequeno Tequileiro | Aura',
-       desc='Contrate o Pequeno Tequileiro para sua festa no Rio de Janeiro: personagem caracterizado servindo tequila direto aos convidados, com animação e interação.',
-       h1='Pequeno Tequileiro: tequila servida na pista',
-       body='Uma experiência de tequila servida direto aos convidados, com atitude e muita animação. O personagem caracterizado circula entre os convidados, serve a dose onde a festa estiver acontecendo e cria momentos que viram foto, vídeo e história para contar.'),
-  dict(id='story', slug='story-maker', name='Story Maker', img='story-maker',
-       title='Story Maker para Casamentos e Eventos no RJ | Aura',
-       desc='Story maker no Rio de Janeiro: um profissional produzindo stories e conteúdo para o Instagram dos noivos, do aniversariante ou da sua marca, em tempo real.',
-       h1='Story Maker para casamentos e eventos',
-       body='Você vive a festa e a gente conta a história. Um profissional dedicado produz stories e conteúdo para o Instagram dos noivos, do aniversariante ou da sua marca em tempo real, registrando os bastidores e os momentos mais importantes do evento.'),
-  dict(id='pod', slug='podcast-para-eventos', name='Podcast do evento', img='podcast',
-       title='Podcast para Casamentos e Eventos no RJ | Estúdio no Evento | Aura',
-       desc='Estúdio de podcast dentro do seu evento no Rio de Janeiro: grave um episódio exclusivo com anfitrião e convidados, com histórias e homenagens. Edição inclusa.',
-       h1='Podcast do evento: um estúdio dentro da sua festa',
-       body='Montamos um estúdio de podcast dentro do evento, com microfones, câmeras e cenário, para gravar um episódio exclusivo com o anfitrião e os convidados: histórias, homenagens e risadas. O episódio editado é entregue depois do evento.'),
-  dict(id='chopp', slug='chopeira-movel', name='Chopeira móvel', img='chopeira',
-       title='Chopeira Móvel para Festas no RJ | Chopp na Mochila | Aura',
-       desc='Chopeira móvel para festas e eventos no Rio de Janeiro: promoter com mochila de chopp servindo os convidados na pista, sempre gelado e sem fila.',
-       h1='Chopeira móvel: o chopp vai até o convidado',
-       body='Um promoter com mochila de chopp circula pela festa servindo os convidados onde eles estiverem: sem fila e sem sair da pista. A mochila térmica tira o chopp na hora, sempre gelado, e copos e mochila podem ser personalizados.'),
-]
+PAGES = json.loads((ROOT / 'api' / '_content' / 'services.json').read_text(encoding='utf-8'))
 
 def esc(x): return html.escape(x, quote=True)
 
@@ -114,12 +83,6 @@ def main():
                 {"@type": "ListItem", "position": 2, "name": p['name'], "item": url}]}]}
         out = build(src, p['title'], p['desc'], url, f"{SITE}/img/{p['img']}.webp", ld, p['id'], static_main(p['h1'], [p['body']], p['slug']))
         (ROOT / f"{p['slug']}.html").write_text(out, encoding='utf-8')
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>',
-          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
-          f'  <url><loc>{SITE}/</loc><priority>1.0</priority></url>']
-    sm += [f'  <url><loc>{SITE}/{p["slug"]}</loc><priority>0.8</priority><image:image><image:loc>{SITE}/img/{p["img"]}.webp</image:loc></image:image></url>' for p in PAGES]
-    sm.append('</urlset>')
-    (ROOT / 'sitemap.xml').write_text('\n'.join(sm) + '\n', encoding='utf-8')
     print('ok:', ', '.join(p['slug'] for p in PAGES))
 
 if __name__ == '__main__':

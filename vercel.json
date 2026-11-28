@@ -1,5 +1,14 @@
 {
   "cleanUrls": true,
+  "functions": {
+    "api/blog.py": { "includeFiles": "api/{_lib,_content}/**", "maxDuration": 10 }
+  },
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/api/blog?kind=sitemap" },
+    { "source": "/blog/feed.xml", "destination": "/api/blog?kind=feed" },
+    { "source": "/blog", "destination": "/api/blog?kind=index" },
+    { "source": "/blog/:slug", "destination": "/api/blog?kind=post&slug=:slug" }
+  ],
   "headers": [
     { "source": "/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
     { "source": "/(favicon.svg|favicon-32.png|apple-touch-icon.png|og-image.jpg)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
