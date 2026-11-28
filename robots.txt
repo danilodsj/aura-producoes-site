@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://auraproducoeseeventos.com.br/sitemap.xml
