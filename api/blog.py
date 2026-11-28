@@ -16,7 +16,7 @@ def not_found():
             '<h1>Página não encontrada</h1><p>Esse conteúdo não existe ou ainda não foi publicado.</p>'
             '<p><a href="/blog">Ver todos os artigos do blog</a></p></div></main>')
     return core.page('Página não encontrada | Aura', 'Página não encontrada.', core.SITE + '/blog', body,
-                     {"@context": "https://schema.org", "@type": "WebPage", "name": "Página não encontrada"})
+                     {"@context": "https://schema.org", "@type": "WebPage", "name": "Página não encontrada"}).replace('content="index, follow, max-image-preview:large"', 'content="noindex"')
 
 
 class handler(BaseHTTPRequestHandler):
